@@ -13,7 +13,7 @@
 # (where this script is located)
 # npm link
 # Then, in the consumer project directory, run
-# npm link lmaplugin-boilerplate
+# npm link @arandu/lmaplugin-datepicker-input
 
 # Specify your dependencies
 declare -a dependencies=("react"

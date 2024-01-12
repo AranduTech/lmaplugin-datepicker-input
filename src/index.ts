@@ -1,3 +1,3 @@
-import BoilerplatePlugin from './BoilerplatePlugin';
+import MuiDatepickerPlugin from './MuiDatepickerPlugin';
 
-export default BoilerplatePlugin;
+export default MuiDatepickerPlugin;
