@@ -29,7 +29,7 @@ const DateInputComponent: React.FunctionComponent<FormFieldProps> = ({
         return `${jsDate.getFullYear()}-${jsDate.getMonth() + 1}-${jsDate.getDate()}`;
     });
 
-    // const adaptedValue = useDateAdapter(value as string, {  });
+    const adaptedValue = (value as string) ? adapter?.date(value) : null;
 
     return (
         <>
@@ -37,7 +37,7 @@ const DateInputComponent: React.FunctionComponent<FormFieldProps> = ({
                 {...props}
                 {...inputProps as any}
                 label={label || name}
-                value={value}
+                value={adaptedValue}
                 sx={{ width: '100%' }}
             />
             {errors.filter(({ key }) => key === name)

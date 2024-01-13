@@ -28,13 +28,15 @@ const DateTimeInputComponent: React.FunctionComponent<FormFieldProps> = ({
         return adapter.toISO(date);
     });
 
+    const adaptedValue = (value as string) ? adapter?.date(value) : null;
+
     return (
         <>
             <DateTimePicker
                 {...props}
                 {...inputProps as any}
                 label={label || name}
-                value={value as any || null}
+                value={adaptedValue}
                 sx={{ width: '100%' }}
             />
             {errors.filter(({ key }) => key === name)
