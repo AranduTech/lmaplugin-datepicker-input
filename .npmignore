@@ -1,4 +1,4 @@
 src/
 .github/
-link_external_deps.sh
+link
 tsconfig.json
