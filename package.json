@@ -16,7 +16,7 @@
     "typescript": "^5.3.3"
   },
   "peerDependencies": {
-    "@arandu/laravel-mui-admin": "^0.6.0-alpha.3",
+    "@arandu/laravel-mui-admin": "^0.6.0-alpha.6",
     "@mui/material": "^5.15.4",
     "@mui/x-date-pickers": "^6.19.0",
     "react": "^17.0.2",

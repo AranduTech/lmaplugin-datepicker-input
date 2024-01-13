@@ -1,1 +1,4 @@
 src/
+.github/
+link_external_deps.sh
+tsconfig.json

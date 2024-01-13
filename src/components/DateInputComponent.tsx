@@ -1,9 +1,10 @@
 import React from 'react';
 
-import { DatePicker } from '@mui/x-date-pickers';
+import { DatePicker, MuiPickersAdapter } from '@mui/x-date-pickers';
 
 import { FormHelperText } from '@mui/material';
 import { FormFieldProps } from '@arandu/laravel-mui-admin/lib/types/form';
+import useDateAdapter from '../useDateAdapter';
 
 const DateInputComponent: React.FunctionComponent<FormFieldProps> = ({
     form, field
@@ -18,7 +19,16 @@ const DateInputComponent: React.FunctionComponent<FormFieldProps> = ({
 
     const { inputProps: inputPropsFn, errors } = form;
 
-    const { value, ...inputProps } = inputPropsFn(name, (date: any) => date.format('YYYY-MM-DD'));
+    const adapter = useDateAdapter();
+
+    const { value, ...inputProps } = inputPropsFn(name, (date) => {
+        if (!adapter || !date) {
+            return null;
+        }
+        return adapter.format(date, 'fullDate');
+    });
+
+    // const adaptedValue = useDateAdapter(value as string, {  });
 
     return (
         <>
@@ -26,7 +36,7 @@ const DateInputComponent: React.FunctionComponent<FormFieldProps> = ({
                 {...props}
                 {...inputProps as any}
                 label={label || name}
-                value={value as any || null}
+                value={value}
                 sx={{ width: '100%' }}
             />
             {errors.filter(({ key }) => key === name)

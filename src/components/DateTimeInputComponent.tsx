@@ -4,6 +4,7 @@ import { DateTimePicker } from '@mui/x-date-pickers';
 
 import { FormHelperText } from '@mui/material';
 import { FormFieldProps } from '@arandu/laravel-mui-admin/lib/types/form';
+import useDateAdapter from '../useDateAdapter';
 
 const DateTimeInputComponent: React.FunctionComponent<FormFieldProps> = ({
     form, field
@@ -18,7 +19,14 @@ const DateTimeInputComponent: React.FunctionComponent<FormFieldProps> = ({
 
     const { inputProps: inputPropsFn, errors } = form;
 
-    const { value, ...inputProps } = inputPropsFn(name, (date: any) => date.toISOString());
+    const adapter = useDateAdapter();
+
+    const { value, ...inputProps } = inputPropsFn(name, (date) => {
+        if (!adapter || !date) {
+            return null;
+        }
+        return adapter.toISO(date);
+    });
 
     return (
         <>
