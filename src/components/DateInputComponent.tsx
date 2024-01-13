@@ -25,7 +25,8 @@ const DateInputComponent: React.FunctionComponent<FormFieldProps> = ({
         if (!adapter || !date) {
             return null;
         }
-        return adapter.format(date, 'fullDate');
+        const jsDate = adapter.toJsDate(date);
+        return `${jsDate.getFullYear()}-${jsDate.getMonth() + 1}-${jsDate.getDate()}`;
     });
 
     // const adaptedValue = useDateAdapter(value as string, {  });
