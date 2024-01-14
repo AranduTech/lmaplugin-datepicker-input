@@ -18,7 +18,27 @@
 # Specify your dependencies
 declare -a dependencies=("react"
                          "react-dom"
-                         "@mui")
+                        "@mui/base"
+                        "@mui/core-downloads-tracker"
+                        "@mui/material"
+                        "@mui/private-theming"
+                        "@mui/styled-engine"
+                        "@mui/system"
+                        "@mui/types"
+                        "@mui/utils"
+                        "@emotion/babel-plugin"
+                        "@emotion/cache"
+                        "@emotion/hash"
+                        "@emotion/is-prop-valid"
+                        "@emotion/memoize"
+                        "@emotion/react"
+                        "@emotion/serialize"
+                        "@emotion/sheet"
+                        "@emotion/styled"
+                        "@emotion/unitless"
+                        "@emotion/use-insertion-effect-with-fallbacks"
+                        "@emotion/utils"
+                        "@emotion/weak-memoize")
 
 # Get the argument - path to the consumer project
 consumer_project_path=$1
