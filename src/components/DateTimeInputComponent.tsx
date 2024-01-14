@@ -2,7 +2,7 @@ import React from 'react';
 
 import { DateTimePicker } from '@mui/x-date-pickers';
 
-import { FormHelperText } from '@mui/material';
+import FormHelperText from '@mui/material/FormHelperText';
 import { FormFieldProps } from '@arandu/laravel-mui-admin/lib/types/form';
 import useDateAdapter from '../useDateAdapter';
 
@@ -33,11 +33,19 @@ const DateTimeInputComponent: React.FunctionComponent<FormFieldProps> = ({
     return (
         <>
             <DateTimePicker
+                sx={{ width: '100%' }}
+                slotProps={{
+                    textField: {
+                        InputLabelProps: {
+                            shrink: true
+                        },
+                        fullWidth: true
+                    }
+                }}
                 {...props}
                 {...inputProps as any}
                 label={label || name}
                 value={adaptedValue}
-                sx={{ width: '100%' }}
             />
             {errors.filter(({ key }) => key === name)
                 .map(({ message }, index) => (

@@ -34,11 +34,19 @@ const DateInputComponent: React.FunctionComponent<FormFieldProps> = ({
     return (
         <>
             <DatePicker
+                sx={{ width: '100%' }}
+                slotProps={{
+                    textField: {
+                        InputLabelProps: {
+                            shrink: true
+                        },
+                        fullWidth: true,
+                    }
+                }}
                 {...props}
                 {...inputProps as any}
                 label={label || name}
                 value={adaptedValue}
-                sx={{ width: '100%' }}
             />
             {errors.filter(({ key }) => key === name)
                 .map(({ message }, index) => (
