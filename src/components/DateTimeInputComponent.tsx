@@ -4,22 +4,31 @@ import { DateTimePicker } from '@mui/x-date-pickers';
 
 import FormHelperText from '@mui/material/FormHelperText';
 import { FormFieldProps } from '@arandu/laravel-mui-admin/lib/types/form';
+
 import useDateAdapter from '../useDateAdapter';
 
 const DateTimeInputComponent: React.FunctionComponent<FormFieldProps> = ({
     form, field
 }) => {
 
+    const { inputProps: inputPropsFn, errors } = form;
+
     const {
         name, label,
         // eslint-disable-next-line no-unused-vars
         initialValue, gridItem, type = 'text',
+        inputProps: fieldProps = {},
         ...props
     } = field;
 
-    const { inputProps: inputPropsFn, errors } = form;
+    const { minDate = undefined, maxDate = undefined } = fieldProps;
 
-    const adapter = useDateAdapter();
+    const {
+        adapter,
+        mountDateLimiters
+    } = useDateAdapter();
+
+    const dateLimiters = mountDateLimiters(minDate, maxDate);
 
     const { value, ...inputProps } = inputPropsFn(name, (date) => {
         if (!adapter || !date) {
@@ -42,6 +51,7 @@ const DateTimeInputComponent: React.FunctionComponent<FormFieldProps> = ({
                         fullWidth: true
                     }
                 }}
+                {...dateLimiters}
                 {...props}
                 {...inputProps as any}
                 label={label || name}
